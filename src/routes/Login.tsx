@@ -7,10 +7,10 @@ import { Link, useHistory } from 'react-router-dom';
 import client, { ApiError } from '../api/client';
 
 const Login = () => {
-  const [error, setError] = useState<ApiError | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<ApiError | null>(null);
   const history = useHistory();
   const login = () => {
     setLoading(true);
