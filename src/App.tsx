@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from 'react-router-dom';
-import Authorized from './components/Authorized';
 import SignUp from './routes/SignUp';
 import Login from './routes/Login';
+import Home from './routes/Home';
 
 const App = () => (
-  <>
+  <Suspense fallback={<>Loading...</>}>
     <Router>
       <Switch>
         <Route path="/sign-up">
@@ -20,13 +19,11 @@ const App = () => (
           <Login />
         </Route>
         <Route path="/">
-          <Authorized fallback={<Redirect to="/sign-up" />}>
-            <></>
-          </Authorized>
+          <Home />
         </Route>
       </Switch>
     </Router>
-  </>
+  </Suspense>
 );
 
 export default App;
