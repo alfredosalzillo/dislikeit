@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Authorized from './components/Authorized';
 import SignUp from './routes/SignUp';
+import Login from './routes/Login';
 
 const App = () => (
   <>
@@ -16,7 +17,7 @@ const App = () => (
           <SignUp />
         </Route>
         <Route path="/login">
-          <></>
+          <Login />
         </Route>
         <Route path="/">
           <Authorized fallback={<Redirect to="/sign-up" />}>

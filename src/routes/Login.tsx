@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
 import {
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-  Link as MuiLink, CircularProgress,
+  Button, CircularProgress, Container, Grid, TextField, Typography, Link as MuiLink,
 } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
+import { Link, useHistory } from 'react-router-dom';
 import client, { ApiError } from '../api/client';
 
-const SignUp = () => {
+const Login = () => {
+  const [error, setError] = useState<ApiError | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<ApiError | null>(null);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const signUp = () => {
+  const login = () => {
     setLoading(true);
-    setError(error);
     return client
       .auth
-      .signUp({
+      .signIn({
         email, password,
       })
       .then((response) => {
@@ -48,12 +42,12 @@ const SignUp = () => {
         <Container maxWidth="xs">
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Typography variant="h4" component="h1" align="center">
-                Create an account
+              <Typography variant="h4" align="center">
+                Login
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <form name="sign-up">
+              <form name="login">
                 <Grid container spacing={2}>
                   {error && (
                     <Grid item xs={12}>
@@ -65,10 +59,9 @@ const SignUp = () => {
                       name="email"
                       variant="outlined"
                       label="email"
-                      placeholder="angelo.caci@getnada.com"
+                      placeholder="alfredo.supa@getall.it"
                       fullWidth
                       disabled={loading}
-                      value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </Grid>
@@ -78,9 +71,8 @@ const SignUp = () => {
                       variant="outlined"
                       label="password"
                       type="password"
-                      fullWidth
                       disabled={loading}
-                      value={password}
+                      fullWidth
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </Grid>
@@ -89,8 +81,8 @@ const SignUp = () => {
                       variant="outlined"
                       size="large"
                       fullWidth
+                      onClick={login}
                       disabled={loading}
-                      onClick={signUp}
                       startIcon={loading && (
                         <CircularProgress
                           size={20}
@@ -98,7 +90,7 @@ const SignUp = () => {
                         />
                       )}
                     >
-                      Register
+                      Login
                     </Button>
                   </Grid>
                 </Grid>
@@ -106,16 +98,14 @@ const SignUp = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography variant="body1" align="center">
-                Already registered?
-                {' '}
+                {'Don\'t have an account? Sign up '}
                 <MuiLink
                   component={Link}
-                  to="/login"
+                  to="/sign-up"
                 >
-                  Login
+                  here
                 </MuiLink>
-                {' '}
-                instead.
+                .
               </Typography>
             </Grid>
           </Grid>
@@ -125,4 +115,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
