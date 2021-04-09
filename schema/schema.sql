@@ -2,12 +2,12 @@ create extension if not exists moddatetime schema extensions;
 
 create table users
 (
-    id         uuid                              default auth.uid() not null primary key,
+    id         uuid                            default auth.uid() not null primary key,
     username   varchar(125)                    null unique,
     avatar_url varchar(255)                    null,
-    created_at timestamp                            default now(),
-    updated_at timestamp                            default now(),
-    version    numeric                              default 1
+    created_at timestamp                       default now(),
+    updated_at timestamp                       default now(),
+    version    numeric                         default 1
 );
 
 create trigger handle_updated_at
