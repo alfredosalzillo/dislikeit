@@ -9,7 +9,7 @@ const Home = () => (
   <>
     <AppBar />
     <Container>
-      <Suspense fallback={<Skeleton variant="text" width="100%"/>}>
+      <Suspense fallback={<Skeleton variant="text" width="100%" />}>
         <Authorized>
           <WelcomeMessage />
         </Authorized>

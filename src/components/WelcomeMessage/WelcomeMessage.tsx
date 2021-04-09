@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
+import React from 'react';
 import { useMe } from '../../api/users';
 import ChangeUsernameField from '../ChangeUsernameField';
-import React from 'react';
 
 const WelcomeMessage = () => {
   const { data: me } = useMe();
